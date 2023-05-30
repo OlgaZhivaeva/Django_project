@@ -34,6 +34,7 @@ def workdir_view(request):
     # который возвращает список файлов в рабочей 
     # директории
     list_dir = listdir('first_project')
-    return HttpResponse(list_dir)
+    return HttpResponse('<br>'.join(list_dir))
+
 
 
