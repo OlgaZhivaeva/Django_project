@@ -1,3 +1,5 @@
+from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.shortcuts import render
 
 DATA = {
@@ -28,3 +30,10 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+def assist(request, dish):
+    servings = int(request.GET.get('servings',1))
+    context = {}
+    context['recipe'] = DATA[dish]
+    for ingr in context['recipe']:
+        context['recipe'][ingr] *= servings
+    return render(request, 'calculator/index.html', context)
